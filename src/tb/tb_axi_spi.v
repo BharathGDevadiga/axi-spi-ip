@@ -71,6 +71,12 @@ module tb_axi_spi;
         $finish;
     end
 
+    // VCD Waveform dump
+    initial begin
+        $dumpfile("waveform.vcd");
+        $dumpvars(0, tb_axi_spi);
+    end
+
     task axi_write(input [3:0] addr, input [31:0] data);
     begin
         @(posedge aclk);

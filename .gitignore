@@ -9,3 +9,5 @@
 *.sim/
 *.srcs/
 build/
+*.vcd
+sim_axi_spi

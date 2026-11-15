@@ -1,0 +1,23 @@
+name: AXI-SPI RTL Verification CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  simulate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Icarus Verilog
+        run: sudo apt-get update && sudo apt-get install -y iverilog
+
+      - name: Compile Verilog Sources
+        run: iverilog -o sim_axi_spi src/rtl/*.v src/tb/tb_axi_spi.v
+
+      - name: Run Behavioral Simulation & Self-Checking Testbench
+        run: vvp sim_axi_spi
